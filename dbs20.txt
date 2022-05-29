@@ -1,0 +1,393 @@
+//NOTICE - guys remember if the table name is already existing then pls do change the name of the table 
+
+1a. create table  employee ( empno int , ename varchar(21), designation varchar(12),salary varchar(12) );
+1b. desc employee;
+---------------------------------------------------------------------------------------
+2a.create table  employee ( empno int , ename varchar(21), designation varchar(12),salary varchar(12) );
+    -- insert values --
+2b.select * from employee where ename LIKE 'a%n'  ;
+----------------------------------------------------------------------------------------
+3a. create table  product ( pid int , pname varchar(21), quantity int , cost int , cid int ,address varchar(12) );
+3b. insert into product values ( 5687,'biscuit', 4 , 200 , 11445, ' vskp');
+ 	as above insert 8 rows 
+-----------------------------------------------------------------------------------------
+4a.  alter table  employee
+    -> modify column empno number(6);
+4b.  update tablename
+      set empno = 123456
+      where empno = 1234;
+---------------------------------------------------------------------------------------
+5a. ALTER TABLE tablename 
+    ADD column_name varchar(21);
+5b.  SELECT COUNT(ID), deptid
+     FROM tablename
+     GROUP BY deptid;
+---------------------------------------------------------------------------------------------------
+6 
+create table employee (EMPNAME varchar(20),EMPID int,DEPT varchar(10),DOB date,DOJ date);
+
+insert into employee values ('Sarath',1011,'IT','01-mar-2002','14-aug-2020');
+insert into employee values ('Kumar',1012,'IT','01-mar-2002','12-aug-2020');
+insert into employee values ('Ram',1013,'IT','28-feb-2002','12-aug-2020');
+a)
+alter table employee drop column empname;
+
+select * from employee;
+
+b)
+
+alter table employee add contact number(10);
+
+ update employee set contact = 7897564235 where empid = 1011;
+ update employee set contact = 6589754624 where empid = 1012;
+ update employee set contact = 8549875135 where empid = 1013;
+
+select * from employee;
+-----------------------------------------------------------------------------
+7
+create table employee (EMPNAME varchar(20),EMPID int,DEPT varchar(10),DOB date,DOJ date);
+
+insert into employee values ('Sarath',1011,'IT','01-mar-2002','14-aug-2020');
+insert into employee values ('Kumar',1012,'IT','01-mar-2002','12-aug-2020');
+insert into employee values ('Ram',1013,'IT','28-feb-2002','12-aug-2020');
+A)
+rename employee to emp;
+select * from emp;
+
+B)
+select * from emp order by empname;
+-------------------------------------------------------------------------
+8)
+
+create table department(DID int,DNAME varchar(20),EID int,ENAME varchar(20),primary key (did,eid));
+
+insert into department values(1420,'CSDS',101,'rahul');
+insert into department values(1421,'CSDS',102,'kartik');
+insert into department values(1423,'CSDS',103,'jessie');
+
+ select * from department;
+---------------------------------------------------------------------------------------------------------------
+9)
+A)
+create table student(rollno int, regno int, sname varchar(20), branch varchar(20), constraint sid_pk primary key(rollno));
+insert into student values(101, 202201, 'Lilly', 'MBA');
+insert into student values(102, 202202,'Charan', 'BCA');
+insert into student values(103, 202203,'Arjun', 'CSE');
+insert into student values(104, 202204,'Pankaj', 'ECE');
+insert into student values(105, 202205,'dishant', 'MECH');
+select * from student;
+
+B)
+alter table student drop primary key;
+alter table student add primary key(regno);
+select * from student;
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+10)
+create table dept(deptno number(2), dname varchar(20), location varchar(15), primary key(deptno));
+insert into dept values(11, 'finance', 'vizag');
+insert into dept values(22, 'production', 'vzm');
+insert into dept values(33, 'sales', 'HYD');
+
+create table emp4(empno number(3) , deptno number(2) , design varchar2(20), primary key(empno), foreign key (deptno) references dept(deptno));
+insert into emp4 values(101, 11, 'analyst');
+insert into emp4 values(102, 22, 'manager');
+insert into emp4 values(103, 33, 'salesman');
+insert into emp4 values(104, 33, 'manager');
+insert into emp4 values(105, 11, 'cashier');
+
+select * from dept;
+select * from emp4;
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+11)
+create table student (sid int, sname varchar(20), age int, contact int, check(age > 15));
+insert into student values(101, 'Ram', 19, 8688675058);
+insert into student values(102, 'kamal', 21, 8688675059);
+insert into student values(103, 'Rakesh', 17, 8688675068);
+insert into student values(104, 'lilly', 20, 9508910148);
+insert into student values(105, 'Ram', 14, 7688675825); 
+-- the above line causes error becuase it violates check constrain
+select * from student;
+
+-----------------------------------------------------------------------------------------------------------------------------
+12) 
+A)
+create table customer(cid int, cname varchar(20), pid int UNIQUE, pname varchar(20), address varchar(20));
+insert into customer values(2001, 'Raju', 101, 'soap', 'vzm');
+insert into customer values(2002, 'Prasanth', 103, 'book', 'vizag');
+insert into customer values(2003, 'Mahesh', 105, 'watch', 'vzm');
+insert into customer values(2004, 'Lilly', 104, 'shoes', 'jsm');
+insert into customer values(2005, 'Ramesh', 102, 'phone', 'hyd');
+select * from customer;
+
+B) select * from customer order by pid;
+
+
+----------------------------------------------------------------------------------------------------------------
+
+13)
+a)
+create table customer(cid int NOT NULL, cname varchar(20), pid int UNIQUE, pname varchar(20));
+insert into customer values(2001, 'Rekha', 104, 'soap');
+insert into customer values(2002, 'Prasanth', 103, 'book');
+insert into customer values(2003, 'Mahesh', 105, 'watch');
+insert into customer values(2004, 'Lilly', 101, 'shoes');
+insert into customer values(null, 'Ramesh', 102, 'phone'); 
+-- the above line causes error because we cannot insert null into cid
+select * from customer;
+
+b)
+select * from customer where cname like '_e%'; 
+
+---------------------------------------------------------------------------------------------------------------------
+
+14) a) create table EMP(Eid int,Ename varchar(10),DID int,Esalary int);
+
+
+> insert into EMP values(20,'Alex',2,41000);
+
+> insert into EMP values(21,'Alok',3,25000);
+
+
+> insert into EMP values(22,'Berlin',4,28000);
+
+
+> insert into EMP values(23,'Nairobi',5,30000);
+
+
+> insert into EMP values(24,'Natasha',6,20000);
+
+b)> select * from EMP where Esalary > (select avg(Esalary) from EMP);
+--------------------------------------------------------------------------------------------------------------------------------
+
+15)a)
+>  create table Employee(Eid int,Ename varchar(10),Edept varchar(20),Esalary int);
+
+> insert into Employee values(160,'Ramsy','cs',41000);
+
+
+> insert into Employee values(161,'Natasha','cs',20000);
+
+> insert into Employee values(162,'Tokyo','It',21000);
+
+
+> insert into Employee values(163,'Mia','It',23000);
+
+
+> insert into Employee values(164,'Naina','cs',25000);
+
+> select * from Employee;
+
+> select Ename , Edept from Employee where Esalary > (select Esalary from Employee where Eid = 163);
+------------------------------------------------------------------------------------------------------------------------------------
+b) ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+16) Joins : 4 types of joins 
+Inner join : Returns records that have matching values in both tables.
+Left Outer Join : Returns all records from the left table, and the matched records from the right table .
+Right Outer Join : Return all records from the right table, and the matched records from the left table .
+Full Outer Join : Return all records when there is a match in either left or right table. 
+> Create table Order(Oid int , Cid int , Eid int);
+> Insert into Order values (1 , 200 , 301);
+
+Insert 4 more values .
+
+>Create table Customer (Cid int , Cname varchar (8) , Caddress varchar (32));
+>Insert into Customer values (200, Hina , Tokyo);
+Insert 4 more values .
+> Select customer.cid, customer.cname, order.oid from customer inner join order on customer.cid = order.oid;
+>Select customer.cid, customer.cname, order.oid from customer left outer join order on customer.cid = order.oid;
+>Select customer.cid, customer.cname, order.oid from customer right outer join order on customer.cid = order.oid;
+>Select customer.cid, customer.cname, order.oid from customer full outer join  order on customer.cid = order.oid;
+--------------------------------------------------------------------------------------------------------------------------
+17) PL/SQL queries
+
+a)//addition of two numbers
+
+> set Serveroutput on;
+> declare
+a int;
+b int;
+begin
+a:=&a;
+b:=&b;
+c:=&c;
+dbms_output.put_line('ADDITION:'||C);
+end;
+/
+------------------------------------------------
+b)// IF CONDITION
+> declare
+ a int;
+ begin
+ a:=$a;
+ if mod (a,2)=0 then
+ dbms_output.put_line(a|| ' is even nnumber');
+ else
+ dbms_output.put_line(a|| ' is odd nnumber');
+ end if;
+ end;
+ /
+-------------------------------------------------
+c)//GREATEST OF THREE NUMBERS USING IF AND ELSE IF
+
+>declare
+ a int;
+ b int;
+ c int;
+ begin
+ a:=&a;
+ b:=&b;
+ c:=&c;
+ if a>b and a>c then
+  dbms_output.put_line(a|| ' is greatest number');
+ else if b>c then
+  dbms_output.put_line(b|| ' is greatest number');
+ else
+ dbms_output.put_line(c|| ' is greatest number');
+ end if;
+ end if;
+ end;
+ /
+--------------------------------------------------
+
+18
+a)// SUMMATION OF ODD NUMBERS USING FOR LOOP
+
+> declare
+a int;
+sum 1 int;
+last value int;
+begin
+sum1:=0;
+last value:=&last value;
+a:=1;
+for aim 1.. last value loop
+ if mod(0,2)=1 then
+  sum1:=sum1+a;
+  end if;
+  end loop;
+ dbms_output.put_line('sum of odd number:'||sum1);
+ end;
+ /
+-------------------------------------------------------
+18 b)// GCD NUMBER
+
+>declare
+ a int;
+ b int;
+ t int;
+ begin 
+  a:=&a;
+  b:=&b;
+  while mod (a,b)!=n loop
+ t:= mod(a,b);
+ a:=b;
+ b:=t;
+ end loop;
+dbms_output.put_line(Gcd : '||b');
+end;
+/
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+19) implicit and explicit
+
+>create table emp(empid int, empname varchar (9) , deptid int , address varchar (20), salary int );
+>insert into emp values ( 1 , 'Abhi', 101 , 'vskp' , 300 );
+>insert into emp values (2 ,' Madhu', 102 , 'vskp', 400 );
+>insert into emp values (3 ,'Akshay' , 103 , 'gwk', 500);
+>insert into emp values (4 , 'Jp', 104 , 'kkd' , 600 );
+>insert into emp values (5 , 'Avinash' , 'hyd' , 700 );
+>set server output on;
+>declare
+ tr int;
+ update emp set salary = salary + 5000;
+ tr : = sql% row count ;
+ if sql% not found then 
+ dbms_output.put_line ('NO ROWS ARE UPDATED' );
+ else if sql: found then
+ dbms_output.put_line (tr //' ROWS ARE UPDATED');
+ end if;
+ end;
+ /
+>select * from emp;(output)
+----------------------------------------------------
+20)Trigger
+
+>create or replace trigger salary difference 
+ before delete or insert or update on emp
+ for each row 
+ when ( NEW .empid>0 )
+ declare 
+ sd int ;
+ begin 
+ sd : = NEW.salary : OLD .salary;
+ dbms_output.put_line ('Old salary ' //:OLD.salary);
+ dbms_outout.put_line ('New salary ' //:NEW.salary);
+ dbms_output.put_line ('Salary Difference ' //sd);
+ end;
+ / 
+
+------------
+
+>declare 
+ tr int;
+ begin
+ tr int;
+ begin 
+ update emp set salary = salary+5000;
+ tr : = sql% row count;
+ if sql% not found then 
+ dbms_output.put_line ( 'NO ROWS ARE UPDATED' );
+ else if sql% found then 
+ dbms_output.put_line ( tr //'ROWS ARE UPDATED' );
+ end if ;
+ end;
+ /
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
